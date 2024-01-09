@@ -9,7 +9,7 @@ def chainInference():
         data = {
             "query": query,
         }
-        response = requests.post('http://localhost:5000/chatbot', json=data)
+        response = requests.post('http://13.215.96.13:5000/chatbot', json=data)
         st.text("Chatbot: " + response.json()['response'])
 
 
