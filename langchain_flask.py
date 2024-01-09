@@ -1,11 +1,14 @@
 import os
-import streamlit as st
+
+from flask import Flask, request, jsonify
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain import HuggingFaceHub
 from langchain.chains import RetrievalQA
+
+app = Flask(__name__)
 
 
 def chainLoad():
@@ -23,14 +26,19 @@ def chainLoad():
     return chain
 
 
+# Load the chain globally once at application startup
+chain = chainLoad()
+
+
+@app.route("/chatbot", methods=["POST"])
 def chainInference():
-    st.title("NEC LLM BOT")
-    if 'chain' not in st.session_state:
-        st.session_state.chain = chainLoad()
-    query = st.text_input("You:")
-    if st.button("Send"):
-        st.text("Chatbot: " + st.session_state.chain.run(query))
+    query = request.json.get("query")
+    if query:
+        response = chain.run(query)  # Access the global chain variable
+        return jsonify({"response": response})
+    else:
+        return jsonify({"error": "Query not provided"}), 400
 
 
 if __name__ == "__main__":
-    chainInference()
+    app.run(debug=False, host="0.0.0.0")
