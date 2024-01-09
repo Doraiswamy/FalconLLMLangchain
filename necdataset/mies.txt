@@ -1,0 +1,43 @@
+1. Purpose
+
+The MIES self-service console enables all users submit and keep track of their requests and tickets, and provide them with tools aid them in resolving their minor IT issues 1 like resetting passwords and uploading user profiles.
+
+The console allows them to view tickets that have been reported by, assigned or pending their action without the need to manually search through numerous tickets found in the incident and service request modules.
+
+Users also can act upon tickets that require their immediate attention so as to facilitate faster resolution and processing time.
+
+2. Scope
+
+This document aims to guide readers on the different functionalities and pages of the self-service console and show how the tools can be utilized for efficient service provision.
+
+3. MIES Self-Service Console
+
+3.1 User Ticket Pages
+
+The user ticket pages allow users to view their submitted, assigned, and pending tickets easily without the need to search through the ITSM 2 consoles for specific tickets. All tickets are organized for easier viewing, allowing users to stay informed with the latest updates to any of them.
+
+Apart from having an overview page, there are also separate pages to view specific ticket types for the convenience of the user.
+
+3.1.1 My Ticket Overview
+
+My Ticket Overview is a comprehensive module where users can view all tickets that are logged under their name, assigned or pending action from them. To access the My Ticket Overview, users may navigate to the main menu and onto My Ticket Overview.
+
+Figure 1: Accessing My Ticket Overview from the main menu
+
+Service Desk team, resolvers have quick access to ITSM tools that aids them in resolving incidents 3 and fulfilling service requests 4, without the need to manually go to the incident management 5 or the service request management 6 modules.
+
+To access the My Ticket Overview page, users are to navigate to the main menu, onto Self-Service and then onto My Ticket Overview
+
+A. Viewing and Filtering Tickets
+
+All users can view all their tickets from My Ticket Overview as shown on Figure 2. Latest tickets will appear at the left from the module
+
+Figure 2: Snippet of the ticket overview showing end user’s incident tickets and service requests
+
+Each block will contain basic information like the submitted for name, and the assignee details. To view the full details of the ticket, users may click on Details. They will be redirected to the full details page of the ticket.
+
+Figure 3: Viewing full incident details from the self-service console
+
+For incident tickets, it works similarly to the incident management module. Users can access the worklog at the top left to view for any updates made onto the ticket. If Service Desk team, resolver need to update the ticket, they may click on the Details button to the redirected to the full incident ticket page.
+
+Service Desk 7 team and change 8 managers can also view change management 9 tickets from My Ticket Overview as well. They need to click on the Detail button where a pop-up interface will appear on screen to show the overview of the ticket
