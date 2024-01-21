@@ -1,43 +1,163 @@
-1. Purpose
+The MIES Platform or MIES – Incident Management module allows Service Desk teams to log and track any incident within a company in a quick and efficient way throughout its lifecycle.
+The module aids them in categorizing incident tickets based on the types, severity, urgency and source and reassign issues to resolver teams to further troubleshooting and resolution. It also ensures that incidents are well-documented so that they can serve as a reference point should future incidents are to occur. Delivery team can also keep track of service level agreement metric to ensure that contractual agreements are not breached based on the agreed contract clauses.
+Service desk team and resolver teams can access the MIES Portal at https://mies.nec-eportal.com.sg/Login and log in with assigned credentials. After logging in, access the Incident Management Module via the menu at the top left corner, to Ticket Console and Incident Logging.
+Service desk team and resolver teams may navigate to the main menu where they can create a new ticket to log issues encountered by end users via Incident Logging and view all incident tickets logged via Search Incident.
+To submit a new incident ticket for end users, Service Desk team and resolver teams are to access the Incident Logging page. They are to complete all mandatory fields marked by an asterisk.
+On the page, the ticket itself is split into these sections: Basic Ticket Information, Ticket Classification, Ticket Assignment, and Categorization.
+The Basic information Ticket section is to show the basic information of the ticket such as who experienced the incident, and what is the incident about.
+The following are the fields to be completed:
+Company - The company where the end-user who encountered the issue is from
+Template Name - Service Desk team and resolver teams can select an incident template to pre-fill the entire ticket. More will be covered further into the guide
+Reported by - The user who reported the issue The interface will also show if the user is VIP.
+Affected user - The user affected by the issue The interface will also show if the user is VIP.
+Summary - A short description of the issue encountered by the user
+Notes - Detailed information for the issue encountered by the user
+Vendor Ticket ID - The ticket ID received from 3rd party vendors. Users would receive them after reporting issues with their hardware/software to them. Enter in the ID if applicable.
 
-The MIES self-service console enables all users submit and keep track of their requests and tickets, and provide them with tools aid them in resolving their minor IT issues 1 like resetting passwords and uploading user profiles.
+If Service Desk and resolver teams would like to view the profile of the reported and/or affected user, they may click on the profile button next to the user’s name.
+Service Desk team and resolver teams creating the incident ticket to track the issue reported by customers may upload attachment(s) like screenshots to aid resolvers to troubleshoot the issue.
+To do so, they may click on Select File and choose the file from their file explorer where are variety of formats are accepted.
+Each attachment has a file limit size of 5 MB.
+Tickets are classified by Impact and Urgency based on the severity of the issue. Priority will be populated by the system automatically.
+Classification of the ticket is based on the impact, urgency, and priority of the incident.
 
-The console allows them to view tickets that have been reported by, assigned or pending their action without the need to manually search through numerous tickets found in the incident and service request modules.
+The levels of impact are Extensive/Widespread, Significant/Large, Moderate/Localized and Minor/Localized.
+The following are the levels of impact and their meaning:
+- Extensive/Widespread - Majority of the entire company users are affected by the issue
+- Significant/Large - A large number of users are affected by the issue
+- Moderate/Localized - A moderate number of users are affected by the issue
+- Minor/Localized - The user themselves or a small team of users are affected by the issue
 
-Users also can act upon tickets that require their immediate attention so as to facilitate faster resolution and processing time.
+Urgency indicated the speed at which resolvers need to address the incident. There are four levels of urgency:
+The following are the levels of urgency and their meaning:
+-Critical-The issue is time-sensitive and could cause significant damage to the company. It needs to be addressed immediately
+-High-The issue is time-sensitive and could cause some damage to the company. The incident needs to be addressed as soon as the resolver team can
+-Medium-The issue is not time-sensitive but needs to be addressed over time to avoid damages
+-Low-The issue is not time-sensitive and does not pose a threat to the company. Other incidents can be resolved first before returning to it
 
-2. Scope
 
-This document aims to guide readers on the different functionalities and pages of the self-service console and show how the tools can be utilized for efficient service provision.
+Priority is automatically calculated based on the impact and urgency of the incident. There are four levels of priority.
+The following are the levels of priority and thier meaning:
+-Critical-The incident rendered essential functionalities inoperable and need to resolved immediately
+-High-The incident interrupted major functionalities, affecting their availability to users. The incident needs to be resolved quickly
+-Medium-Non-critical functionalities or procedures are affected with no direct impact to other critical services. Time can be taken to resolve the incident
+-Low-A limited number of non-critical user functionalities are affected. Time can be taken to resolve the incident.
 
-3. MIES Self-Service Console
+To aid in classifying and incident, the reader can refer to these incident examples
+Critical Priority
+· A critical priority user service restoration incident created by Service Desk team reported by phone could be when email services is down in a company where all users are not able to access their Outlook client or web mail.
+High Priority
+· A high priority infrastructure restoration incident created by the IT service team reported by email could be when a major security vulnerability was discovered amongst a larger number (50 – 100) of users’ hardware and need to install a patch within the next few days.
+Medium Priority
+· A medium priority user service restoration incident created by Service Desk team reported by phone could be when some users (not exceed a total of 50) from different departments has intermittent Outlook client issues.
+Low Priority
+· An example of a low priority user service request is when a few users requested for additional email storage for the Outlook client. They have emailed the request and do not face disruption of their service.
 
-3.1 User Ticket Pages
+For the ticket assignment Service Desk and resolver teams may assign or reassign incident ticket to other agents to work on the issue instead.
 
-The user ticket pages allow users to view their submitted, assigned, and pending tickets easily without the need to search through the ITSM 2 consoles for specific tickets. All tickets are organized for easier viewing, allowing users to stay informed with the latest updates to any of them.
+To assign/reassign the ticket, they need to click on Browse Assignee first. After that, select the support organization in charge of resolution, the support group under assigned group and finally the assignee.
+Once done, they may click on Assign to assign the ticket to the agent.
+Alternatively, Service Desk and resolver teams may assign the ticket to themselves by clicking on the Assigned to Me.
+If the Service Desk agent is in more than one support group, they can select the suitable option and then click on Assign.
 
-Apart from having an overview page, there are also separate pages to view specific ticket types for the convenience of the user.
+For operational and product categorization, Categorizations are used to label the incident ticket into more specific operation and product assignment mappings to help identify what is being affected by the incident.
+Service Desk and resolver teams may select from the drop-down list of operations and products that best describes the incident. The list is searchable as well.
+The operational categories work in a three-tiered hierarchy to show more specific operations or functionalities that were affected. Depending on the company selected at the beginning, some operations may have only one tier while others may have multiple.
+These the hierarchies based on category tier and meaning:
+-What kind of operation is affected/requested. This category is typically broader in definition eg. Function, Crash, Security
+-Which part of the operation is affected eg. Software, Infrastructure, Account
+-What action needs to be taken for the operation eg. Repair, Dispose, Upgrade
 
-3.1.1 My Ticket Overview
+The product categories work in a four-tiered hierarchy as well. It aids in describing the product or service that has been affected by the incident.
+These are the hierarchies based on product tier and meaning:
+-What kind of product or service has been affected/requested. This category is typically broader in definition eg. Applications, Physical Devices, Process
+-Which part of the product or service has been affected/requested eg. Mobile Devices, Peripherals,
+-What kind of product or service has been affected/requested. This category shows specific product/service names eg. Laptops, Virtual Service, Mobile Phone
+-This shows the exact name of the product that is being affected by the incident eg. Office 365, MacBook, IBM server rack
+When logging a new incident ticket, Service Desk and resolver teams do not need to complete the resolution categorization as this meant for updating the ticket after submission.
 
-My Ticket Overview is a comprehensive module where users can view all tickets that are logged under their name, assigned or pending action from them. To access the My Ticket Overview, users may navigate to the main menu and onto My Ticket Overview.
+For setting incident date, date information shows when the ticket was first assigned to a Service Desk agent and when the teams responded to the incident.
+The reported date refers to the date the incident was raised to the Service Desk team. It is auto-filled to the current date and time by default but if needed, it can be manually set as well.
+First Assigned Date refers to the date where the incident ticket was created and assigned to. This field is system-generated and cannot be edited.
+Onsite Response Date refers to the date where the resolver teams first responded to the incident. This field can be left blank at first if there is not response but should be promptly updated so that to track of the speed of response.
+Once the incident ticket is completed, Service Desk team and resolvers can save it to log it into the Search Incident page. The assignee, as well as the affected users will be notified via email about ticket for their reference.
 
-Figure 1: Accessing My Ticket Overview from the main menu
+Utilizing incident ticket templates, service Desk team may utilize incident ticket templates to log more commonly occurring incidents more conveniently.
+To use an incident ticket template, Service Desk team can access them under Ticket Information. They are to first select the company and then select the available templates under Template Name.
+The template will immediately auto-fill the ticket’s information, classification, categorization sections.
+Service Desk team would only need to fill up in the Reported by, Affected User and notes (if not already filled) fields and attached files if needed.
+If they wish, Service Desk and resolver teams can still make edits to the auto-filled fields. Once completed, they may click on Create to log the ticket.
 
-Service Desk team, resolvers have quick access to ITSM tools that aids them in resolving incidents 3 and fulfilling service requests 4, without the need to manually go to the incident management 5 or the service request management 6 modules.
+Incident Auto-suggestions are for aiding Service Desk team and resolvers to resolve similar incidents and IT issues that have occurred before. This provide a quick reference for incidents that allow them to resolve them at a quick and more efficient pace.
+They will have access to this function when creating a new ticket and updating existing tickets as well.
+To access the auto-suggestions, Service Desk team and resolvers are to simply enter in keywords into the summary. These keywords can be a word or short phrase related to the incident they are logging in. For instance, words such as “password”, “crash”, “hacking” etc.
+After entering a keyword(s), the View Suggestions button will appear below the summary field. Service Desk team and resolvers may click on it to view knowledge article and resolved incident suggestions.
+The auto-suggestions interface will appear on screen. There are two tabs to select from: Knowledge Articles and Existing Incidents.
 
-To access the My Ticket Overview page, users are to navigate to the main menu, onto Self-Service and then onto My Ticket Overview
+For Knowlegde Article suggestions the The auto-suggestion interface will match the keywords entered into the summary to the knowledge articles’ title, tags and content published in the knowledge base and retrieve them. The interface will show the latest ten articles created by date.
+Service Desk team and resolvers may first read the article by clicking on View where they will be redirected to the full knowledge article. They can read the full article and learn about the solutions offered there.
+If the solutions offered on the article are applicable to the incident being logged, they may click on Apply on the auto-suggestion interface.
+The article’s technical notes will be entered into the notes field. Service Desk team and resolvers just need to fill in or update the rest of the ticket fields. Once completed, they may save the ticket and log it into the incident management console.
 
-A. Viewing and Filtering Tickets
+For existing incident suggestions, Using the same auto-suggestion interface, Service Desk team and resolvers can view suggestions for past similar resolved incidents. This can help them to view how previous incidents were resolved in a similar situation and use it as a reference in their current resolution progress.
+The auto-suggestions will match the keywords entered into the field to the resolved incident summaries and resolutions logged into the search incident console. The interface will retrieve ten of the most recent resolved incidents to view and apply.
+Service Desk team and resolvers may view the resolved incident’s ticket by clicking on View where they will be redirected to the ticket page showing the full details.
 
-All users can view all their tickets from My Ticket Overview as shown on Figure 2. Latest tickets will appear at the left from the module
+To view all incidents logged, the Search Incident page allows the Service Desk and resolver teams to view all logged incidents tickets in one page. All incident tickets can be filtered and directly updated in bulk conveniently.
 
-Figure 2: Snippet of the ticket overview showing end user’s incident tickets and service requests
+To access the incident search page, Service Desk team and resolvers can access the Incident Search Page from the Search Incident tab on the main menu.
 
-Each block will contain basic information like the submitted for name, and the assignee details. To view the full details of the ticket, users may click on Details. They will be redirected to the full details page of the ticket.
+Viewing and exporting all incidents logged, the search incident page shows all the incident tickets that have been logged in a table format. Service Desk and resolver teams may sort the tickets by clicking on the column titles on the table.
+By default, the console will be filtered to show the tickets that have been assigned, pending, or in progress under the logged in agent’s support group. This is so that Service Desk and resolver teams can keep track of their tickets quickly.
+If they wish to remove the filters, they may click on the X mark on the filter where the console will automatically refresh to apply the changes.
+Additionally, the entire log of open incident tickets can be exported into an Excel sheet or a CSV file for future reference or for reporting purposes. This can be done by accessing the menu at the top right corne
 
-Figure 3: Viewing full incident details from the self-service console
+To filter incidents or to view certain types of incident tickets, Service Desk team may use filters on the incident search page. To access these filters, they may click on the magnifying glass icon on the right side of the page to open the filters console.
+To remove the filter, Service Desk team and resolvers may click on the X mark on it.
 
-For incident tickets, it works similarly to the incident management module. Users can access the worklog at the top left to view for any updates made onto the ticket. If Service Desk team, resolver need to update the ticket, they may click on the Details button to the redirected to the full incident ticket page.
+For updating ticket workflows and doing basic updates, during incident resolution, Service Desk and resolver teams are to update incident ticket to reflect the accurate resolution progress in a timely way.
+To access the individual ticket, they are to click on the ticket number from the search incident page where they will be redirected to the full details of it. Service Desk and resolver teams may go ahead and make the appropriate updates to the tickets, such as the status or to categorization.
+Any changes made to the ticket will be automatically tracked and saved in the ticket work log. Any files attached during the initial ticket submission will be shown on the work log itself where they may click to download.
+Service Desk and resolver teams may also enter in their custom updates on the work log’s text field and attach additional files by clicking on the paperclip icon.
+They are encouraged to regularly check the work log for ongoing incident tickets and update them regularly.
+If the initial categorization of the incident ticket is incorrect, Service Desk and resolver teams may go ahead and enter in the new categorization under Resolution Categorization. This is to show that during the course of resolution, the cause is different than what was originally submitted and thus the categorization needs to be updated.
 
-Service Desk 7 team and change 8 managers can also view change management 9 tickets from My Ticket Overview as well. They need to click on the Detail button where a pop-up interface will appear on screen to show the overview of the ticket
+Relating Tickets, and Assets to the Incident Ticket, similar incident tickets and tickets from other consoles can be linked together to show how they are related to each other. This can be used for resolving multiple tickets simultaneously as well as for troubleshooting of potential problems, and eventually proposing changes to improve the systems.
+To link incident tickets together, Service Desk team may navigate to Relate at the top-right corner of the individual ticket where the ticket relationship form will appear on screen.
+Module name refers to what type of ticket will be linked together. Service Desk and resolver teams are to select from the drop-down menu where they have the option to link tickets from other modules
+Next, Service Desk team are to select the relationship of the ticket. If they are linking an incident ticket, they have two options:
+· Original – Refers to the main incident that occurred earlier or at the same time as others. There can only be one original ticket but multiple duplicate tickets linked under it.
+· Duplicate – Refers to similar or same incident tickets to the original incident. These duplicate incidents can be a result of the original incident or multiple reports of the same incident. Duplicate tickets can only be linked to only one original ticket.
+To link tickets, assets and knowledge articles from other articles, Service Desk and resolver teams are to simply select from the Module drop-down menu and set the relationship as Related.
+Finding possible relationships with tickets from other modules is a good way to show possible connections to incidents and other problems, changes and assets. It will aid in investigating the root cause of incidents and propose the necessary changes to improve the way service is delivered.
+Once the ticket is selected, Service Desk and resolver teams may save the relationship where the ticket will be listed on the interface. It will be also reflected on the work log as well.
+The linked tickets will be indicated at the top of the page where Service Desk and resolver teams may click on View to bring up the same relationship interface again. They may link more tickets if needed.
+On the relationship interface, Service Desk and resolver teams can click on the ticket number listed to quickly access the other ticket. It also works for redirecting to other modules as long as they have access rights to them.
+Additionally, linked incident tickets will either have an Origin or Duplicate label at the top-right corner. Service Desk and resolver teams are to note that only the origin (original) ticket can be edited and the duplicate ticket will be read-only. Any updates done on it will be automatically reflected onto the duplicate tickets.
+These changes will be reflected on both tickets’ work logs as well. Service Desk and resolvers may unlink the ticket at any point of time. To unlink, they may bring out the ticket relationship interface again and click on unlink on the ticket of their choice
+Once a duplicate ticket has been unlinked, they can be edited again as per normal.
+
+Tracking service level agreement metrics - in order to ensure that service level agreement (SLA) obligations are met, SLA metrics related to the operation and product categories and date information are automatically populated for easy reference.
+The SLA metrics dictate the acceptable duration required to respond to the incident. There are different statuses of the SLAs for the incidents:
+Pending-Incident resolution has not started due to the pending status
+Running-Incident resolution is ongoing. The ticket will start tracking time taken once assigned to a resolver
+Met-Incident has been resolved within the timing stipulated by the SLA
+Upon viewing the SLA details, it shows how long incident resolution should take and the company operation hours. The SLA details is split into two parts: Timing and Milestone
+· Timing shows when the incident started, due and resolved, and compares the duration taken with the duration from the SLA metrics. It will indicate if the incident was resolved within the duration or if it was missed.
+· Milestone Target shows the stages of incident resolution and if they have been met. In each stage, a notification email about the resolution targets is sent to the resolver team informing them whether action taken in each stage was successful or not.
+Service Desk team and resolver teams should take into consideration of the SLA metrics during the course of incident resolution to ensure that the SLA obligations are not breached.
+They are also reminded to mark incidents as resolved promptly so that the module can stop tracking and accurately reflect the time taken for resolution.
+
+For bulk updating of incidents, for the convenience of the Service Desk and resolver teams, incident tickets can be grouped together and updated at the same time using the bulk update function. This function is ideal in providing quick status updates to the tickets.
+Service Desk team need to identify similar tickets that are due for an update and select Update. A ticket update interface will appear showing the status fields where Service Desk team may update accordingly. Once the updates are completed and the changes have been saved, they will be reflected immediately on all the selected incident tickets and onto the ticket Work Log. Fields generated on the ticket update interface may change according to the status set, similar to the setting the status on the incident ticket.
+Service Desk and resolver teams are to be reminded that in bulk updating, updates done on the interface will be reflected in all the selected tickets the same way. Therefore, they are to select tickets carefully and make appropriate updates.
+
+For logging a new incident while updating, if Service Desk team needs to create a new incident ticket altogether while updating their current ticket, they may click on Create New Incident at the top of the page. This will redirect them to incident logging page on a new web browser tab. Service Desk team can then log a new ticket while updating the current ticket if needed.
+This allows Service Desk to create new tickets for users without losing their progress on their current ticket that they are on.
+
+For viewing past actions on the history log the Service Desk team and resolvers may view all the past actions taken on the incident ticket via the History Log. To access, they may navigate to the top left of the page and click on View under History Log.
+The history log will list all the changes that took place on the incident ticket where these logs are all system generated. It will show the basic information of the ticket such as the action type, action by, assignee and status.
+To view more precise information about the changes, Service Desk team and resolvers may click on Click to view changes under Audit Remarks.
+
+For closing tickets with knowlegde  articles, For some companies, in order to close a ticket, Service Desk team and resolvers need to apply the appropriate knowledge article to it. This is such that all incidents are properly documented in the knowledgebase and can be referred back in the future.
+The incident ticket status should be in the resolved status before setting it to closed. To close the ticket with a knowledge article, Service Desk and resolver teams are to follow the similar steps as mentioned under Knowledge Article Suggestions. They are to search for the appropriate knowledge article and click on Apply to retrieve the technical notes.
