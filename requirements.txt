@@ -8,6 +8,3 @@ pydantic==1.10.12
 requests~=2.31.0
 streamlit~=1.29.0
 python-dotenv~=0.21.1
-streamlit
-requests
-python-dotenv
