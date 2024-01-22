@@ -7,7 +7,7 @@ def chainInference():
     query = st.text_input("You:")
     if st.button("Send"):
         data = {
-            "query": query,
+            "prompt": query,
         }
         response = requests.post('http://13.215.96.13:5000/chatbot', json=data)
         st.text("Chatbot: " + response.json()['response'])
