@@ -83,7 +83,8 @@ def chainInference():
                 response, response_type = conversationalChainInference(query)
                 query_type = response_type
                 return jsonify({'response': response})
-            return jsonify({'response': response, 'query_type': 'qna'})
+            query_type = 'qna'
+            return jsonify({'response': response})
     else:
         query_type = 'qna'
         return jsonify({'response': 'query not provided'}), 400
