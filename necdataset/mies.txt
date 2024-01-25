@@ -105,7 +105,7 @@ Service Desk team and resolvers may view the resolved incident’s ticket by cli
 
 To view all incidents logged, the Search Incident page allows the Service Desk and resolver teams to view all logged incidents tickets in one page. All incident tickets can be filtered and directly updated in bulk conveniently.
 
-To access the incident search page, Service Desk team and resolvers can access the Incident Search Page from the Search Incident tab on the main menu.
+To access the incident search page, Service Desk team and resolvers can access the Incident Search Page from the Search Incident tab on the main menu. Also, to check the status of an incident you can query in your ticket ID here in the chatbot, I will be able to provide you the information.
 
 Viewing and exporting all incidents logged, the search incident page shows all the incident tickets that have been logged in a table format. Service Desk and resolver teams may sort the tickets by clicking on the column titles on the table.
 By default, the console will be filtered to show the tickets that have been assigned, pending, or in progress under the logged in agent’s support group. This is so that Service Desk and resolver teams can keep track of their tickets quickly.

@@ -17,12 +17,12 @@ llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo-0613")
 
 class CreateIncident(BaseModel):
     summary: str = Field(
-        ...,
-        description="Summary of the incident.",
+        default="",
+        description="Description about the incident.",
     )
     notes: str = Field(
-        ...,
-        description="Additional notes about the incident.",
+        default="N/A",
+        description="Optional description of the notes",
     )
 
     def reset(self):
@@ -33,7 +33,22 @@ class CreateIncident(BaseModel):
             setattr(self, field_name, '')
 
 
-create_incident_details = CreateIncident(summary='', notes='')
+class CheckIncident(BaseModel):
+    ticketnumber: str = Field(
+        default="",
+        description="ID of the incident",
+    )
+
+    def reset(self):
+        """
+        Reset all fields to their default values.
+        """
+        for field_name, field_value in self.__annotations__.items():
+            setattr(self, field_name, '')
+
+
+create_incident_details = CreateIncident()
+check_incident_details = CheckIncident()
 field_to_fill = None
 
 
@@ -73,19 +88,37 @@ def filter_response(text_input, user_details):
     return user_details, ask_for
 
 
-def conversationalChainInference(query):
+def conversationalChainInference(query, form_type_list):
     global create_incident_details
+    global check_incident_details
     global field_to_fill
 
-    if field_to_fill:
-        create_incident_details, ask_for = filter_response(field_to_fill+': '+query, create_incident_details)
-
-    if check_what_is_empty(create_incident_details):
-        field_description = CreateIncident.__fields__[check_what_is_empty(create_incident_details)[0]].field_info.description
-        ai_response = ask_for_info(field_description)
-        field_to_fill = check_what_is_empty(create_incident_details)[0]
-        return ai_response, 'form'
+    if form_type_list[0] == 'trigger_form_create_incident':
+        if field_to_fill:
+            create_incident_details, ask_for = filter_response(field_to_fill + ': ' + query, create_incident_details)
+        if check_what_is_empty(create_incident_details):
+            field_description = CreateIncident.__fields__[check_what_is_empty(create_incident_details)[0]].field_info.description
+            ai_response = ask_for_info(field_description)
+            field_to_fill = check_what_is_empty(create_incident_details)[0]
+            return ai_response, form_type_list
+        else:
+            field_to_fill = None
+            return_string = f"""MIES APIs not integrated yet, therefore the following details cannot be logged in:
+                               summary: {create_incident_details.summary}
+            """
+            create_incident_details.reset()
+            return return_string, ['qna']
     else:
-        field_to_fill = None
-        create_incident_details.reset()
-        return 'everything gathered move to next phase', 'qna'
+        if len(form_type_list) == 2:
+            check_incident_details.ticketnumber = form_type_list[1]
+        if field_to_fill:
+            check_incident_details, ask_for = filter_response(field_to_fill + ': ' + query, check_incident_details)
+        if check_what_is_empty(check_incident_details):
+            field_description = CheckIncident.__fields__[check_what_is_empty(check_incident_details)[0]].field_info.description
+            ai_response = ask_for_info(field_description)
+            field_to_fill = check_what_is_empty(check_incident_details)[0]
+            return ai_response, form_type_list
+        else:
+            field_to_fill = None
+            check_incident_details.reset()
+            return 'MIES APIs have not been integrated yet, therefore cannot access the status of this incident '+form_type_list[1], ['qna']

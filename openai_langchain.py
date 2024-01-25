@@ -17,7 +17,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-query_type = 'qna'
+query_type = ['qna']
 
 
 def chainLoad():
@@ -32,11 +32,13 @@ def chainLoad():
     embeddings = OpenAIEmbeddings()
     vectorStore = FAISS.from_texts(chunks, embeddings)
     template = """
-                    I'll provide you with some context and history related to a question. Please carefully consider the information and answer the question thoughtfully. If the answer isn't found in the context, use your extensive knowledge and understanding of the world to provide a comprehensive response.
+                    I'll provide you with some context and history related to a question. Please carefully consider the information and answer the question thoughtfully. If the answer isn't found in the context, use your extensive knowledge and understanding of the world to provide a comprehensive response. ALso try to format the answer point wise where ever possible.
                     
                     Here are some RULES YOU NEED TO FOLLOW in order of importance:
-                    1. If the user query explicitly mentions any request to create an incident like for eg. 'create incident', return the word 'create_incident_form' exactly without checking the history or context.
-                    2. If the user query is about information related to incident creation like for eg. 'how to create an incident', provide a comprehensive response.
+                    1. If the user query contains phrases like "create incident", "open ticket", or "report a problem/incident", immediately respond "["trigger_form_create_incident"]" EXACTLY. Do not check or add it to the history or context.                   
+                    2. If the user query mentions terms like "incident creation", "reporting procedure", "how to check the incident status" or "submitting a ticket", use the provided context and history to understand the specific information they need and provide a comprehensive response.
+                    3. If the user query contains a word with alphanumeric characters (eg. INC20210100024) or phrases like "check an incident INC20210100024", "status of incident INC20210100024" or "INC20210100024", immediately respond "["trigger_form_check_incident","INC20210100024"]" EXACTLY AS A STRING. 
+                    4. Give response in english only.
 
                     Context:
                     {context}
@@ -51,7 +53,7 @@ def chainLoad():
         template=template,
     )
 
-    llm = OpenAI(temperature=0.7, max_tokens=150)
+    llm = OpenAI(temperature=0.3, max_tokens=200)
     chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorStore.as_retriever(),
                                         chain_type_kwargs={
                                             "verbose": True,
@@ -73,20 +75,22 @@ def chainInference():
     global query_type
     query = request.json.get('prompt')
     if query:
-        if query_type == 'form':
-            response, response_type = conversationalChainInference(query)
+        if 'trigger_form' in query_type[0]:
+            response, response_type = conversationalChainInference(query, query_type)
             query_type = response_type
             return jsonify({'response': response})
         else:
             response = chain.run(query)
-            if 'create_incident_form' in response:
-                response, response_type = conversationalChainInference(query)
+            print(response)
+            if 'trigger_form' in response:
+                response, response_type = conversationalChainInference(query, eval(response.strip())
+)
                 query_type = response_type
                 return jsonify({'response': response})
-            query_type = 'qna'
+            query_type = ['qna']
             return jsonify({'response': response})
     else:
-        query_type = 'qna'
+        query_type = ['qna']
         return jsonify({'response': 'query not provided'}), 400
 
 
