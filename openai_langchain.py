@@ -1,4 +1,6 @@
 import os
+import json
+import regex as re
 from dotenv import load_dotenv
 
 from flask import Flask, request, jsonify
@@ -12,6 +14,7 @@ from langchain import PromptTemplate
 from langchain.memory import ConversationBufferWindowMemory
 
 from conversatinal_langchain import conversationalChainInference
+
 
 load_dotenv()
 
@@ -32,20 +35,22 @@ def chainLoad():
     embeddings = OpenAIEmbeddings()
     vectorStore = FAISS.from_texts(chunks, embeddings)
     template = """
-                    I'll provide you with some context and history related to a question. Please carefully consider the information and answer the question thoughtfully. If the answer isn't found in the context, use your extensive knowledge and understanding of the world to provide a comprehensive response. ALso try to format the answer point wise where ever possible.
-                    
-                    Here are some RULES YOU NEED TO FOLLOW in order of importance:
-                    1. If the user query contains phrases like "create incident", "open ticket", or "report a problem/incident", immediately respond "["trigger_form_create_incident"]" EXACTLY. Do not check or add it to the history or context.                   
-                    2. If the user query mentions terms like "incident creation", "reporting procedure", "how to check the incident status" or "submitting a ticket", use the provided context and history to understand the specific information they need and provide a comprehensive response.
-                    3. If the user query contains a word with alphanumeric characters (eg. INC20210100024) or phrases like "check an incident INC20210100024", "status of incident INC20210100024" or "INC20210100024", immediately respond "["trigger_form_check_incident","INC20210100024"]" EXACTLY AS A STRING. 
-                    4. Give response in english only.
+                    I'll provide you with some context and history related to a question. Please carefully consider the information and answer the question thoughtfully. If the answer isn't found in the context or history, use your extensive knowledge and understanding of the world to provide a comprehensive response. ALso try to format the answer point wise where ever possible.
 
+                    Here are some RULES YOU NEED TO FOLLOW. Please understand the user query properly and use these rules to the best of your judgement.
+                    1. DO NOT start your response with prefixes like 'AI:'.
+                    2. If the question contains phrases similar to "create incident", "open ticket", or "report a problem/incident", respond '["trigger_form_create_incident"]' EXACTLY. Do not respond with '["trigger_form_create_incident"]' when giving a comprehensive response. Do not check or add it to the history.
+                    3. If the question mentions terms like "incident creation", "reporting procedure", "how to check the incident status" or "submitting a ticket", use the provided context to understand the specific information they need and provide a comprehensive response. Do not respond with '["trigger_form_check_incident"]'.
+                    4. If the question contains phrases similar to "check an incident INC20210100024", "status of incident INC20210100024", "what is status of incident INC20210100024" or "INC20210100024", respond '["trigger_form_check_incident","INC20210100024"]' EXACTLY AS A STRING. Do not respond with '["trigger_form_check_incident","INC20210100024"]' when giving a comprehensive response. Note that the query must contain INC in its string. Do not check and add it to the history.
+                    5. Give response in english only. 
+                    
                     Context:
                     {context}
 
                     History:
                     {history}
-
+                    
+                    Question:
                     {question}
                     """
     prompt = PromptTemplate(
@@ -53,13 +58,14 @@ def chainLoad():
         template=template,
     )
 
-    llm = OpenAI(temperature=0.3, max_tokens=200)
+    llm = OpenAI(temperature=0.5, max_tokens=200)
+
     chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorStore.as_retriever(),
                                         chain_type_kwargs={
                                             "verbose": True,
                                             "prompt": prompt,
                                             "memory": ConversationBufferWindowMemory(
-                                                k=5,
+                                                k=2,
                                                 memory_key="history",
                                                 input_key="question"),
                                         })
@@ -82,9 +88,12 @@ def chainInference():
         else:
             response = chain.run(query)
             print(response)
+            response = re.sub(r"AI:", "", response)
+            match = response[response.find("["):response.rfind("]") + 1]
+            if match:
+                response = match
             if 'trigger_form' in response:
-                response, response_type = conversationalChainInference(query, eval(response.strip())
-)
+                response, response_type = conversationalChainInference(query, json.loads(response))
                 query_type = response_type
                 return jsonify({'response': response})
             query_type = ['qna']

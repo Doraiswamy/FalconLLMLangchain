@@ -18,11 +18,11 @@ llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo-0613")
 class CreateIncident(BaseModel):
     summary: str = Field(
         default="",
-        description="Description about the incident.",
+        description="Summary of the incident",
     )
     notes: str = Field(
         default="N/A",
-        description="Optional description of the notes",
+        description="Optional description of the incident",
     )
 
     def reset(self):
@@ -68,7 +68,7 @@ def ask_for_info(ask_for):
 def check_what_is_empty(user_peronal_details):
     ask_for = []
     for field, value in user_peronal_details.dict().items():
-        if value in [None, "", 0]:
+        if value in [None, "", 0, "autofill"]:
             print(f"Field '{field}' is empty.")
             ask_for.append(f'{field}')
     return ask_for
